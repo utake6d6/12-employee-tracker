@@ -19,13 +19,16 @@ async function main() {
 }
 
 // main menu
+async function mainMenu() {
+  // menu variables
+  // edit variables
+  // menu choice
+  // build departments
+  // build roles
+  // build employees
+}
 
-// edit
+// helper functions
 
-// menu choice
-
-// build departments
-
-// build roles
-
-// build employees
+// tutor notes: promise needs 2 functions
+//
