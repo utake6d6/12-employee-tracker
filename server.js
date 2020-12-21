@@ -90,8 +90,21 @@ async function mainMenu() {
       for (let d of departments) {
         console.log(tr(d.ID, 5) + tr(d.NAME, 32));
       }
+      break;
     case viewRoles:
-
+      console.log(
+        tr("Id", 5) + tr("Title", 32) + tr("Salary", 12) + tr("Department", 32)
+      );
+      console / log(tableLine(5 + 32 + 12 + 32));
+      for (let r of roles) {
+        console.log(
+          tr(r.ID, 5) +
+            tr(r.TITLE, 32) +
+            tr(r.SALARY, 12) +
+            tr(r.DEPARTMENT_NAME, 32)
+        );
+      }
+      break;
     case viewEmployees:
 
     case editDepartment:
