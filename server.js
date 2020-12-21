@@ -21,8 +21,19 @@ async function main() {
 // main menu
 async function mainMenu() {
   // menu variables
+  var viewDepartments = "View all Departments";
+  var viewRoles = "View all Roles";
+  var viewEmployees = "View All Employees";
+  var addDepartment = "Add Department";
+  var editDepartment = "Edit Department";
+  var addRole = "Add Role";
+  var editRole = "Edit Role";
+  var addEmployee = "Add Employee";
+  var editEmployee = "Edit Employee";
+  var exit = "Exit";
+
   // edit variables
-  // menu choice
+  // menu choice list
   // build departments
   // build roles
   // build employees
