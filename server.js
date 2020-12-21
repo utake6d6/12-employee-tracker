@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
+const { listenerCount } = require("process");
 
 // MySQL’s connection pool - reuse connections - enhance performance of executing commands
 const pool = mysql.createPool({
@@ -33,8 +34,25 @@ async function mainMenu() {
   var exit = "Exit";
 
   // edit variables
+  var editObject = {};
+  var editing = false;
+
   // menu choice list
+  var menuChoice = await list("Select an option:", [
+    viewDepartments,
+    viewRoles,
+    viewEmployees,
+    addDepartment,
+    editDepartment,
+    addRole,
+    editRole,
+    addEmployee,
+    editEmployee,
+    exit,
+  ]);
+
   // build departments
+
   // build roles
   // build employees
 }
