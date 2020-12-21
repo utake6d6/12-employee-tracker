@@ -166,8 +166,36 @@ async function mainMenu() {
       }
       break;
     case editEmployee:
-
+      editObject = await list("Select a Employee:", employeeChoices);
+      editing = true;
     case addEmployee:
+      if (roles.length == 0) {
+        console.log("No Rules Exist!");
+      } else {
+        var firstName = await prompt(
+          "Enter First Name:",
+          editing ? editObject.FIRST_NAME : null
+        );
+        var lastName = await prompt(
+          "Enter Last Name:",
+          editing ? editObject.LAST_NAME : null
+        );
+        var role = await list("Select a Role:", roleChoices);
+        var manager = await prompt("Select a Manager:", employeeChoices);
+        if (!editing) {
+          query(
+            "insert into employee (first_name, last_name, role_id, manager_id) values (?,?,?,?)",
+            [firstName, lastName, role.ID, manager.ID]
+          );
+        } else {
+          query(
+            "update employee set first_name = ?, last_name = ?, role_id = ?, manager_id = ? where id = ?",
+            [firstName, lastName, role.ID, manager.ID, editObject]
+          );
+        }
+        log("Employee", editing);
+      }
+      break;
   }
 
   // exit from method back to mainMenu
