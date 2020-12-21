@@ -73,7 +73,10 @@ async function mainMenu() {
   }
 
   // build employees
-  var employees = await query("select * from employee", []); // come back for sql - see notes
+  var employees = await query(
+    "select e.*, r.TITLE as ROLE_TITLE, e2.FIRST_NAME as MANAGER_FIRST_NAME, e2.LAST_NAME as MANAGER_LAST_NAME, d.NAME as DEPARTMENT_NAME from employee e join role r on (e.role_id = r.id) left join employee e2 on (e.MANAGER_ID = e2.ID) join department d on (r.department_id = d.id) order by e.id",
+    []
+  );
   var employeeChoices = [];
   // new value for choice
   for (let e of employees) {
@@ -195,6 +198,8 @@ async function mainMenu() {
         }
         log("Employee", editing);
       }
+      break;
+    default:
       break;
   }
 
