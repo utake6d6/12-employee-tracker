@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
+const { resolve } = require("path");
 const { listenerCount } = require("process");
 
 // MySQL’s connection pool - reuse connections - enhance performance of executing commands
@@ -84,7 +85,11 @@ async function mainMenu() {
   switch (menuChoice) {
     // need 9 cases
     case viewDepartments:
-
+      console.log(tr("Id", 5) + tr("Name", 32)); // +2 for table row buffer
+      console.log(tableLine(5 + 32));
+      for (let d of departments) {
+        console.log(tr(d.ID, 5) + tr(d.NAME, 32));
+      }
     case viewRoles:
 
     case viewEmployees:
@@ -106,7 +111,79 @@ async function mainMenu() {
   return menuChoice == exit ? null : mainMenu();
 }
 
-// helper functions
+// helper functions:
+
+// table row
+function tr(value, totalLength) {
+  value = value == null || value == "null null" ? "[None]" : value.toString();
+  var final = value;
+  for (var i = value.length; i < totalLength + 1; i++) {
+    final += " ";
+  }
+  // constant
+  return final;
+}
+
+function tableLine(length) {
+  var line = " ";
+  for (var i = 0; i < length; i++) {
+    line += "-";
+  }
+  return line;
+}
+
+// table edit created msg
+function log(table, editing) {
+  console.log(table + " " + (editing ? "Edited" : "Created") + "!");
+}
+
+// prompt msg promise
+function prompt(message, defaultValue) {
+  return new Promise((resolve) => {
+    inquirer
+      .prompt([
+        {
+          name: "prompt",
+          message: message,
+          default: defaultValue,
+        },
+      ])
+      .then((answers) => {
+        resolve(answers.prompt);
+      });
+  });
+}
+
+// choice promise
+function list(message, choices) {
+  return new Promise((resolve) => {
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          name: "prompt",
+          message: message,
+          choices: choices,
+        },
+      ])
+      .then((answers) => {
+        resolve(answers.prompt);
+      });
+  });
+}
+
+// query for pool
+function query(sql, values) {
+  return new Promise((resolve) => {
+    pool.getConnection(function (err, connection) {
+      connection.query(sql, values, function (err, results, rows) {
+        connection.release();
+        if (err) throw err;
+        resolve(results);
+      });
+    });
+  });
+}
 
 // tutor notes: promise needs 2 functions
 // Build Employees to get the manager name need to join back on emp table - once this join happens you want to have a left join - 3 joins (1 needs to be a left join - join/left join/join) -
