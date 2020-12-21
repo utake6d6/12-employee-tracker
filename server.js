@@ -52,8 +52,15 @@ async function mainMenu() {
   ]);
 
   // build departments
+  var departments = await query("select * from department order by id", []);
+  var deptChoices = [];
+  // new value for choices
+  for (let d of departments) {
+    deptChoices.push({ name: d.NAME, value: d });
+  }
 
   // build roles
+
   // build employees
 }
 
