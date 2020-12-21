@@ -77,9 +77,33 @@ async function mainMenu() {
   for (let e of employees) {
     employeeChoices.push({ name: e.FIRST_NAME + " " + e.LAST_NAME, value: e });
   }
-  employeeChoices.push({name: '[None]', value: {ID: null}});
+  employeeChoices.push({ name: "[None]", value: { ID: null } });
 
-  switch
+  // switch statement evaluates an expression, matching the expression's value to a case clause, and executes statements associated with that case, as well as statements in cases that follow the matching case - * Each case value has to end in a break
+
+  switch (menuChoice) {
+    // need 9 cases
+    case viewDepartments:
+
+    case viewRoles:
+
+    case viewEmployees:
+
+    case editDepartment:
+
+    case addDepartment:
+
+    case editRole:
+
+    case addRole:
+
+    case editEmployee:
+
+    case addEmployee:
+  }
+
+  // exit from method back to mainMenu
+  return menuChoice == exit ? null : mainMenu();
 }
 
 // helper functions
@@ -97,3 +121,32 @@ async function mainMenu() {
 // ON customer.city_id = city.id
 // JOIN
 // WHERE condition",
+
+// > exp:
+// switch (expression) {
+//   case value1:
+//     //Statements executed when the
+//     //result of expression matches value1
+//     [break;]
+//   case value2:
+//     //Statements executed when the
+//     //result of expression matches value2
+//     [break;]
+//   ...
+//   case valueN:
+//     //Statements executed when the
+//     //result of expression matches valueN
+//     [break;]
+//   [default:
+//     //Statements executed when none of
+//     //the values match the value of the expression
+//     [break;]]
+// }
+// expression:
+// its result is matched against each case
+
+// case valueN - op:
+// used to match against expression - If the expression matches the specified valueN, the statements  inside the case clause are executed until either the end of the switch statement or a break
+
+// default - op:
+// executed if the value of expression doesn't match any of the case
