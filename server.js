@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const mysql = require("mysql");
 const { resolve } = require("path");
 const { listenerCount } = require("process");
+const { deprecate } = require("util");
 
 // MySQL’s connection pool - reuse connections - enhance performance of executing commands
 const pool = mysql.createPool({
@@ -106,11 +107,34 @@ async function mainMenu() {
       }
       break;
     case viewEmployees:
-
+      console.log(employees);
+      break;
     case editDepartment:
-
+      editObject = await list("Select a Department:", deptChoices);
+      editing = true;
     case addDepartment:
-
+      var deptName = await prompt(
+        "Enter Department Name:",
+        editing ? editObject.NAME : null
+      );
+      deptName = deptName.trim();
+      departments = await query("select * from department where name = ?", [
+        deptName,
+      ]);
+      if (departments.length == 0) {
+        if (!editing) {
+          query("insert ino department (name) values (?)", [deptName]);
+        } else {
+          query("update department set name = ? where id = ?", [
+            deptName,
+            editObject.ID,
+          ]);
+        }
+        log("Department", editing);
+      } else {
+        console.log("That Department already exists!");
+      }
+      break;
     case editRole:
 
     case addRole:
