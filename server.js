@@ -136,9 +136,35 @@ async function mainMenu() {
       }
       break;
     case editRole:
-
+      editObject = await list("Select a Role:", roleChoices);
+      editing = true;
     case addRole:
-
+      if (departments.length == 0) {
+        console.log("No Departments Exist!");
+      } else {
+        var title = await prompt(
+          "Enter Role Title:",
+          editing ? editObject.TITLE : null
+        );
+        var salary = await prompt(
+          "Enter Salary:",
+          editing ? editObject.SALARY : null
+        );
+        var dept = await list("Select a Department:", deptChoices);
+        if (!editing) {
+          query(
+            "insert into role (title, salary, department_id) values (?,?,?)",
+            [title, salary, dept.ID]
+          );
+        } else {
+          query(
+            "update role set title = ?, salary = ?, department_id = ? where id = ?",
+            [title, salary, dept.ID, editObject.ID]
+          );
+        }
+        log("Role", editing);
+      }
+      break;
     case editEmployee:
 
     case addEmployee:
