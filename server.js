@@ -1,8 +1,5 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
-const { resolve } = require("path");
-const { listenerCount } = require("process");
-const { deprecate } = require("util");
 
 // MySQL’s connection pool - reuse connections - enhance performance of executing commands
 const pool = mysql.createPool({
@@ -99,7 +96,7 @@ async function mainMenu() {
       console.log(
         tr("Id", 5) + tr("Title", 32) + tr("Salary", 12) + tr("Department", 32)
       );
-      console / log(tableLine(5 + 32 + 12 + 32));
+      console.log(tableLine(5 + 32 + 12 + 32));
       for (let r of roles) {
         console.log(
           tr(r.ID, 5) +
@@ -110,7 +107,23 @@ async function mainMenu() {
       }
       break;
     case viewEmployees:
-      console.log(employees);
+      console.log(
+        tr("Id", 5) +
+          tr("Name", 32) +
+          tr("Role", 32) +
+          tr("Manager", 32) +
+          tr("Department", 20)
+      );
+      console.log(tableLine(5 + 32 + 32 + 32 + 32 + 20));
+      for (let e of employees) {
+        console.log(
+          tr(e.ID, 5) +
+            tr(e.FIRST_NAME + " " + e.LAST_NAME, 32) +
+            tr(e.ROLE_TITLE, 32) +
+            tr(e.MANAGER_FIRST_NAME + " " + e.MANAGER_LAST_NAME, 32) +
+            tr(e.DEPARTMENT_NAME, 20)
+        );
+      }
       break;
     case editDepartment:
       editObject = await list("Select a Department:", deptChoices);
@@ -184,7 +197,7 @@ async function mainMenu() {
           editing ? editObject.LAST_NAME : null
         );
         var role = await list("Select a Role:", roleChoices);
-        var manager = await prompt("Select a Manager:", employeeChoices);
+        var manager = await list("Select a Manager:", employeeChoices);
         if (!editing) {
           query(
             "insert into employee (first_name, last_name, role_id, manager_id) values (?,?,?,?)",
@@ -193,7 +206,7 @@ async function mainMenu() {
         } else {
           query(
             "update employee set first_name = ?, last_name = ?, role_id = ?, manager_id = ? where id = ?",
-            [firstName, lastName, role.ID, manager.ID, editObject]
+            [firstName, lastName, role.ID, manager.ID, editObject.ID]
           );
         }
         log("Employee", editing);
@@ -221,7 +234,7 @@ function tr(value, totalLength) {
 }
 
 function tableLine(length) {
-  var line = " ";
+  var line = "";
   for (var i = 0; i < length; i++) {
     line += "-";
   }
