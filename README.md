@@ -79,9 +79,11 @@ Build a command-line application to manage a company's employee database, using 
 
 ## Installation:
 
-Clone repository https://github.com/utake6d6/12-employee-tracker\
-Install Inquirer.js & Node MySQL 2\
-Use "node server.js" to run the app\
+Clone repository https://github.com/utake6d6/12-employee-tracker
+
+Install Inquirer.js & Node MySQL 2
+
+Use "node server.js" to run the app
 
 ## Usage:
 
