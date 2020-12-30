@@ -58,3 +58,53 @@ View employees by department.
 Delete departments, roles, and employees.
 
 View the total utilized budget of a department—i.e., the combined salaries of all employees in that department. -->
+
+# Employee Tracker
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+
+![Usage](assets/img/EmpTrkr_open.png)
+
+## Table of Contents:
+
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Description:
+
+Build a command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL.
+
+## Installation:
+
+Clone repository https://github.com/utake6d6/12-employee-tracker
+Install Inquirer.js & Node MySQL 2.
+Use "node server.js" to run the app.
+
+## Usage:
+
+![Usage](assets/img/EmpTrkr_pic.png)
+
+## License:
+
+MIT
+
+## Contributing:
+
+This project may be forked.
+
+## Tests:
+
+NA
+
+## Questions:
+
+If you have any questions please reach out to the developer:
+
+Github: <https://github.com/utake6d6/12-employee-tracker>
+
+Email: <utake6d6@gmail.com>

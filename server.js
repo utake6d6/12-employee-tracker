@@ -139,7 +139,7 @@ async function mainMenu() {
       ]);
       if (departments.length == 0) {
         if (!editing) {
-          query("insert ino department (name) values (?)", [deptName]);
+          query("insert into department (name) values (?)", [deptName]);
         } else {
           query("update department set name = ? where id = ?", [
             deptName,
