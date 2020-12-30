@@ -105,4 +105,4 @@ If you have any questions please reach out to the developer:
 
 Github: <https://github.com/utake6d6/12-employee-tracker>
 
-Email: <utake6d6@gmail.com>
+Email: <puppyhugs@gmail.com>
