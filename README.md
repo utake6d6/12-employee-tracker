@@ -87,7 +87,11 @@ Use "node server.js" to run the app
 
 ## Usage:
 
-![Usage](assets/img/EmpTrkr_pic.png)
+Demo:
+
+https://github.com/utake6d6/12-employee-tracker/blob/main/assets/img/employe_tracker.mp4
+
+![Usage](assets/img/EmpTrkr_gif.gif)
 
 ## License:
 
